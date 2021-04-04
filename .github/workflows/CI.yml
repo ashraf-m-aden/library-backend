@@ -10,10 +10,20 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  
+  backend:
     runs-on: ubuntu-latest
-
+    container:
+      image: nejishow/library-db:1
+      env:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: root
+      ports:
+        - 3306
+  
+  build:
+    runs-on: ubuntu-latest
+    needs: backend
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -21,6 +31,4 @@ jobs:
       with:
         java-version: 11
     - name: Maven Package
-      run: mvn clean package
-    - name: Maven Verify
-      run: mvn clean verify -DskipTests
+      run: mvn -B package --file ./pom.xml
