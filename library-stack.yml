@@ -1,0 +1,48 @@
+version: "3"
+services:
+
+  library-frontend:
+    image: library-frontend
+    ports:
+      - "4200:80"
+    networks:
+      - frontend
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  library-db:
+    image: library-db
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  library-app:
+    image: library
+    ports:
+      - 8080:8080
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - library-db
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+
+networks:
+  frontend:
+  backend:
+

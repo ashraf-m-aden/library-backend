@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.ashraf.library.entity.User;
@@ -22,8 +22,8 @@ public class JwtUtil {
 	@Value("${app.jwtSecret}")
 	private String SECRET_KEY;
 
-	// test
 	public String extractId(String token) {
+		
 		return extractClaim(token, Claims::getSubject);
 	}
 	
@@ -45,8 +45,14 @@ public class JwtUtil {
 	}
 	
 	public String generateToken(User user) {
+		Logger log = Logger.getLogger(JwtUtil.class);
+		log.info("inside jwtutil");
 		Map<String, Object> claims = new HashMap<>();
 		return createToken(claims, user.getId());
+	}
+	public String jwt() {
+		
+		return "akhbfakl,faefkaùf;aelf,aek,";
 	}
 
 	private String createToken(Map<String, Object> claims, int i) {

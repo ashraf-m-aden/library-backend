@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ashraf.library.entity.Genre;
 import com.ashraf.library.services.GenreService;
 
+@CrossOrigin
 @RestController
 public class GenreRestController {
 
@@ -27,34 +28,34 @@ public class GenreRestController {
 		this.genreService = genreService;
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/genres")
 	public List<Genre> findAll(){
 		
 		return genreService.findAll();
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/genres/{id}")
 	public Genre getGenre(@PathVariable int id){
 		
 		return genreService.findGenre(id);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/genres")
 	public Genre save(@RequestBody Genre genre){
 		return genreService.save(genre);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("/genres")
 	public Genre update(@RequestBody Genre genre){
 		
 		return genreService.save(genre);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+
 	@DeleteMapping("/genres/{id}")
 	public String delete(@PathVariable int id){
 		genreService.deleteGenre(id);

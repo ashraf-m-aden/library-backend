@@ -17,6 +17,7 @@ import com.ashraf.library.entity.Genre;
 import com.ashraf.library.services.BookService;
 import com.ashraf.library.services.GenreService;
 
+@CrossOrigin
 @RestController
 public class BookRestController {
 
@@ -32,28 +33,28 @@ public class BookRestController {
 
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/books")
 	public List<Book> findAll(){
 		
 		return bookService.findAll();
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/books/{id}")
 	public Book getBook(@PathVariable int id){
 		
 		return bookService.findBook(id);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/books/genre/{id}")
 	public List<Book> getBookByGenre(@PathVariable int id){
 		
 		return bookService.findByGenreId(id);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/books/{id}")
 	public Book save(@RequestBody Book book, @PathVariable int id){
 		
@@ -66,14 +67,14 @@ public class BookRestController {
 		return bookService.save(book);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("/books")
 	public Book update(@RequestBody Book book){
 		
 		return bookService.save(book);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
+
 	@DeleteMapping("/books/{id}")
 	public String delete(@PathVariable int id){
 		bookService.deleteBook(id);

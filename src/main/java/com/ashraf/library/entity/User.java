@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User implements UserDetails {
+public class User {
 
 	
 	// define private fields and annotate them
@@ -49,11 +49,10 @@ public class User implements UserDetails {
 	}
 	
 	
-	public User(String username, String password, String authority, List<Borrow> borrowed) {
+	public User(String username, String password, String authority) {
 		this.username = username;
 		this.password = password;
 		this.authority = authority;
-		this.borrowed = borrowed;
 	}
 
 	public int getId() {
@@ -80,46 +79,15 @@ public class User implements UserDetails {
 		this.borrowed = borrowed;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return username;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getPassword() {
+		return password;
 	}
 
 
@@ -131,6 +99,15 @@ public class User implements UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 
 	
