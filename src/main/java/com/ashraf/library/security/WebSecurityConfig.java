@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//disable csrf, authorize /authenticate, but not the others, and do do session
 		http.csrf().disable().cors().and()
-		.authorizeRequests().antMatchers("/authenticate").permitAll().and()
+		.authorizeRequests().antMatchers("/authenticate").permitAll()
 		.anyRequest().authenticated()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	
 		//add a filter before the usrnamepasswordauthfilter
