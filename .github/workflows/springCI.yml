@@ -26,7 +26,7 @@ jobs:
       with:
         java-version: 11
     - name: build app
-      run: mvn install -DskipTests
+      run: mvn -Pprod clean install -DskipTests
     - name: Build docker image
       run: docker image build -t nejishow/library .
     - name: Push docker image
