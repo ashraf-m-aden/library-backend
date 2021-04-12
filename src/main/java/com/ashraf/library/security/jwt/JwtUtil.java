@@ -50,12 +50,8 @@ public class JwtUtil {
 		Map<String, Object> claims = new HashMap<>();
 		return createToken(claims, user.getId());
 	}
-	public String jwt() {
-		
-		return "akhbfakl,faefkaùf;aelf,aek,";
-	}
 
-	private String createToken(Map<String, Object> claims, int i) {
+	public String createToken(Map<String, Object> claims, int i) {
 		
 		return Jwts.builder().setClaims(claims).setSubject(String.valueOf(i)).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *60)) // one minute

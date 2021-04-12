@@ -26,21 +26,21 @@ public class ClientRestController {
 		this.clientService = clientService;
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@GetMapping("/clients")
 	public List<Client> findAll(){
 
 		return clientService.findAll();
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@GetMapping("/clients/{id}")
 	public Client getClient(@PathVariable int id){
 		
 		return clientService.findClient(id);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@PostMapping("/clients")
 	public Client save(@RequestBody Client client){
 		System.out.println(client);

@@ -2,7 +2,6 @@ package com.ashraf.library.controllers;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,59 +30,54 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RestController
 public class AuthenticationRestController {
 
-	@Autowired
+
 	private UserService userService;
 
-	@Autowired
+	
 	private JwtUtil jwtTokenUtil;
 	
 	@Value("${app.jwtSecret}")
 	private String SECRET_KEY;
+	
+	
+
+	@Autowired
+	public AuthenticationRestController(UserService userService, JwtUtil jwtTokenUtil) {
+		this.userService = userService;
+		this.jwtTokenUtil = jwtTokenUtil;
+	}
+
+
 
 
 	// we created an authenticate endpoint and the body of the request is the pseudo
 	// and password yes
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authRequest)
 			throws Exception {
+		Logger log = Logger.getLogger(AuthenticationRestController.class);
 		try {
 			
-			Logger log = Logger.getLogger(AuthenticationRestController.class);
 
 			// then authentication manager try to authenticate with the pseudo and password
-
 			new UsernamePasswordAuthenticationToken(authRequest.getusername(), authRequest.getPassword());
 		} catch (BadCredentialsException e) {
+			log.info("bad credentials");
 			// if it doesnt work throw exception
 			throw new Exception("Incorrect pseudo or password", e);
 		}
-		// if it works loads the admin with the username because we configuref our
-		// loadUserbyUsername
-		final User admin = userService.findByUsernameAndPassword(authRequest.getusername(),
+		final User user = userService.findByUsernameAndPassword(authRequest.getusername(),
 				authRequest.getPassword());
-		// create jwt
-		final String jwt = jwtTokenUtil.generateToken(admin);
 
-		// return the jwt
+		// create jwt
+		final String jwt = jwtTokenUtil.generateToken(user);
+				// return the jwt
 		return ResponseEntity.status(201).body(new AuthenticationResponse(jwt));
 	}
 	
 	
-	// authentication simulation test method
-	@PostMapping("/authenticateTest")
-	public ResponseEntity<?> createAuthenticationTestToken()
-			throws Exception {
-		Logger log = Logger.getLogger(AuthenticationRestController.class);
-		// if it works loads the admin with the username because we configuref our
-		// loadUserbyUsername
-		// create jwt
-		final String jwt = createToken(1);
-		// return the jwt
-		return ResponseEntity.status(201).body(new AuthenticationResponse(jwt));
-	}
-
 	
 
 	private String createToken(int i) {
