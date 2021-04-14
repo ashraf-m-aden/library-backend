@@ -17,7 +17,6 @@ import com.ashraf.library.entity.Genre;
 import com.ashraf.library.services.BookService;
 import com.ashraf.library.services.GenreService;
 
-@CrossOrigin
 @RestController
 public class BookRestController {
 
