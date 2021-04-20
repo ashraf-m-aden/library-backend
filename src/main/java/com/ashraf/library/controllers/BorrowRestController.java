@@ -23,7 +23,7 @@ import com.ashraf.library.services.UserService;
 
 import net.minidev.json.JSONObject;
 
-@CrossOrigin
+@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app", maxAge = 3600)
 @RestController
 public class BorrowRestController {
 

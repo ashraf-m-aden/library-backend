@@ -14,7 +14,7 @@ import com.ashraf.library.entity.Client;
 import com.ashraf.library.services.ClientService;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app", maxAge = 3600)
 @RestController
 public class ClientRestController {
 

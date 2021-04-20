@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ashraf.library.entity.Genre;
 import com.ashraf.library.services.GenreService;
 
-@CrossOrigin
+@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app", maxAge = 3600)
 @RestController
 public class GenreRestController {
 

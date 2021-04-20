@@ -28,7 +28,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app", maxAge = 3600)
 @RestController
 public class AuthenticationRestController {
 
