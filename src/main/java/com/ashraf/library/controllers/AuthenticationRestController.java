@@ -27,6 +27,8 @@ import com.ashraf.library.services.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+
+@CrossOrigin
 @RestController
 public class AuthenticationRestController {
 

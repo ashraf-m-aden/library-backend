@@ -23,6 +23,7 @@ import com.ashraf.library.services.UserService;
 
 import net.minidev.json.JSONObject;
 
+@CrossOrigin
 @RestController
 public class BorrowRestController {
 

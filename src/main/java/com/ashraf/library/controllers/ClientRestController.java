@@ -14,7 +14,7 @@ import com.ashraf.library.entity.Client;
 import com.ashraf.library.services.ClientService;
 
 
-
+@CrossOrigin
 @RestController
 public class ClientRestController {
 
