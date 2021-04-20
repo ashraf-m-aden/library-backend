@@ -31,9 +31,15 @@ public class LibraryApplication {
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/*").allowedOrigins(allowedCors);
-			}
+		    public void addCorsMappings(CorsRegistry registry) {
+
+		        registry.addMapping("/**")
+		            .allowedOrigins(allowedCors)
+		            .allowedMethods("PUT", "DELETE", "GET", "POST")
+		            .allowCredentials(true).maxAge(3600);
+
+		        // Add more mappings...
+		    }
 		};
 	}
 
