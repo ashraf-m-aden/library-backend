@@ -1,6 +1,7 @@
 package com.ashraf.library;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
@@ -13,6 +14,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class LibraryApplication {
 
+	@Value("${app.cors}")
+	private String allowedCors;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 	}
@@ -28,7 +32,7 @@ public class LibraryApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/*").allowedOrigins("https://nationallibrary-13f4b.web.app");
+				registry.addMapping("/*").allowedOrigins(allowedCors);
 			}
 		};
 	}

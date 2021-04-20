@@ -46,7 +46,6 @@ public class JwtUtil {
 	
 	public String generateToken(User user) {
 		Logger log = Logger.getLogger(JwtUtil.class);
-		log.info("inside jwtutil");
 		Map<String, Object> claims = new HashMap<>();
 		return createToken(claims, user.getId());
 	}

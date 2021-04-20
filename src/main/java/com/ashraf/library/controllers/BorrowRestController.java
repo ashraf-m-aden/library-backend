@@ -42,14 +42,12 @@ public class BorrowRestController {
 		this.clientService = clientService;
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@GetMapping("/borrows")
 	public List<Borrow> findAll(){
 		
 		return borrowService.findAll();
 	}
 	
-	@CrossOrigin(origins = "http://localhost:80")
 	@GetMapping("/borrows/{id}")
 	public Borrow getBorrow(@PathVariable int id){
 		
@@ -57,21 +55,18 @@ public class BorrowRestController {
 	}
 	
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@GetMapping("/borrows/client/{id}")
 	public List<Borrow> getBorrowByUser(@PathVariable int id){
 		
 		return borrowService.findByClientId(id);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@GetMapping("/borrows/book/{id}")
 	public List<Borrow> getBorrowByBook(@PathVariable int id){
 		
 		return borrowService.findByBookId(id);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@PostMapping("/borrows")
 	public Borrow save(@RequestBody JSONObject borrow){
 		int clientId = (int) borrow.get("clientId");
@@ -89,7 +84,6 @@ public class BorrowRestController {
 		return borrowService.save(newBorrow);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@PutMapping("/borrows")
 	public Borrow update(@RequestBody Borrow borrow){
 		
@@ -100,7 +94,6 @@ public class BorrowRestController {
 		//return borrowService.save(borrow);
 	}
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@DeleteMapping("/borrows/{id}")
 	public String delete(@PathVariable int id){
 		borrowService.deleteBorrow(id);

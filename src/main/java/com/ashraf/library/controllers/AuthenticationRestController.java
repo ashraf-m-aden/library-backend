@@ -53,7 +53,6 @@ public class AuthenticationRestController {
 	// we created an authenticate endpoint and the body of the request is the pseudo
 	// and password yes
 	
-	@CrossOrigin(origins = "https://nationallibrary-13f4b.web.app")
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authRequest)
 			throws Exception {
@@ -90,7 +89,6 @@ public class AuthenticationRestController {
 	
 	
 	// we get the user info
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/user")
 	public ResponseEntity<User> getUserDetails(HttpServletRequest request) throws Exception {
 		final String authorizationHeader = request.getHeader("Authorization");
